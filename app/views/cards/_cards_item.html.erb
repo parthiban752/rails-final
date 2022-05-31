@@ -1,0 +1,100 @@
+
+
+
+<div class="header">
+  <h1>INDUS SHOP</h1>
+  <p>Shop now</p>
+</div>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+}
+</style>
+<ul>
+  <li><a class="active" href="/">Home</a></li>
+  <li><a href="/">Contact us</a></li>
+  <li><a href="/">BUY my cart</a></li>
+</ul>
+
+</head>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/Logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+/* Page Content */
+.content {padding:20px;}
+</style>
+</head>
+<body>
+<style>
+<p style="background-image: url('img_girl.jpg');">
+</style>
+
+
+
+</body>
+</html>
+
+
+
+
+<h1>MY CART</h1>
+
+
+
+<% @order_items.each do |item| %>
+  <h3>ITEM:<%= item.product.title %></h3>
+  <h5>COST:<%= item.product.price %></h5>
+  <h6>QUANTITY:</h6>
+  <%= form_for item, remote: true do |f| %>
+    <%= f.hidden_field :product_id, :value => item.product.id %>
+    <%= f.number_field :quantity, :value => item.quantity.to_i %>
+    <%= f.submit "Update MY CART"%>
+    <%= link_to "Remove Items", order_item_path(item), method: :delete, remote: true %>
+    <% end %>
+<% end %>
+<h2>Your bill is RS <%= current_order.subtotal %>

@@ -1,0 +1,136 @@
+<div class="header">
+  <h1>INDUS SHOP</h1>
+  <p>Shop now</p>
+</div>
+
+<!--columning-->
+<head>
+<style>
+.newspaper {
+  column-count: 2;
+  column-gap: 40px;
+  column-rule-style: solid;
+  column-rule-width: 1px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+}
+</style>
+<ul>
+  <li><a class="active" href="shops#index">Home</a></li>
+  <li><a href="shops#index">Contact us</a></li>
+  <li><a href="cards/show.html">My cart</a></li>
+</ul>
+
+</head>
+
+<h1>DEALS OF DAY</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Products:</h1>
+<div class="newspaper">
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.price %></td>
+        <td><%= link_to 'DETAILS', shop_path(product) %></td>
+
+
+        <td>
+          <%= form_for @order_item, remote: true do |f|%>
+          <%= f.hidden_field :product_id, :value => product.id %>
+          <%= f.number_field :quantity, :value => 1, :min => 1 %>
+          <%= f.submit "Add to MY CART" %>
+          <% end %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/Logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+/* Page Content */
+.content {padding:20px;}
+</style>
+</head>
+<body>
+<style>
+<p style="background-image: url('img_girl.jpg');">
+</style>
+
+
+<h1>Contact us</h1>
+<p> please feel free to contact us through:
+<br>
+Gmail:indusshop@gmail.com
+<br>
+phone:9876543210</p>
+
+
+</body>
+</html>
+
+
+
+
+
